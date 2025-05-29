@@ -5,6 +5,8 @@ const Contador = () => {
 
   useEffect(() => {
     // Componente montado
+    // Extraer el valor del localStorage
+    // y guardarlo en el estado
     const savedCounter = localStorage.getItem("counter");
     setCounter(Number(savedCounter))
   }, []);
