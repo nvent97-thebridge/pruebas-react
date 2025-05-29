@@ -1,22 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Contador = () => {
   const [counter, setCounter] = useState(0);
-  const [otroCounter, setOtroCounter] = useState(100);
+
+  useEffect(() => {
+    // Componente montado
+    const savedCounter = localStorage.getItem("counter");
+    setCounter(Number(savedCounter))
+  }, []);
+
+  useEffect(() => {
+    // Componente actualizado
+    localStorage.setItem("counter", counter)
+  }, [counter]);
 
   return (
-    <>
-      <h1
+    <div style={{ display: "flex", gap: "24px" }}>
+      <button
         onClick={() => {
-          setCounter(counter + 1);
-          setOtroCounter(otroCounter - 1);
+          setCounter(counter - 1);
         }}
       >
-        Counter: {counter} - {otroCounter}
-      </h1>
-    </>
+        -
+      </button>
+      <h1>Counter: {counter}</h1>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        +
+      </button>
+    </div>
   );
 };
-
 
 export default Contador;

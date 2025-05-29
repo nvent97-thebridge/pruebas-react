@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-      <h5 onDoubleClick={() => setView("patata")}>ESTADO</h5>
+      {/* <h5 onDoubleClick={() => setView("patata")}>ESTADO</h5> */}
       <button onClick={() => setView("contador")}>Contador</button>
       <button onClick={() => setView("humano")}>Ejemplo useEffect</button>
       {renderMenuOption(view)}
