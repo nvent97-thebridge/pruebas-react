@@ -5,6 +5,7 @@ import UserList from "./components/UserList";
 import Contador from "./components/Contador";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import Error from "./components/Error";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
                             path="/users"
                             element={<UserList />}
                         />
+                        <Route path="*" element={<Error/>}/>
                     </Routes>
                 </BrowserRouter>
             </div>
