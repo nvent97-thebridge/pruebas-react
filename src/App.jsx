@@ -1,53 +1,52 @@
-import Contador from "./components/Contador";
 import "./App.css";
-import Human from "./components/Human";
-import { useState } from "react";
-import Example from "./components/Example";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InputValidation from "./components/InputValidation";
-
+import UserList from "./components/UserList";
+import Contador from "./components/Contador";
+import Home from "./components/Home";
+import Header from "./components/Header";
 
 function App() {
-  const [view, setView] = useState("contador");
-  let patata = { value: 1 };
 
-  const renderMenuOption = (menuOption) => {
-    switch (menuOption) {
-      case "contador":
-        return <Contador />;
-      case "humano":
-        // trabajar con los datos
-        return <InputValidation/>;
-      case "patata":
-        return <h1>Patata</h1>;
-      default:
-        return <p>Invalid option</p>;
-    }
-  };
+  /*
+  EJERCICIO
 
-  // view == "contador" ? "una cosa" : "otra"
+  Crear un nuevo componente llamado UserList
+  Agregar la ruta y el link.
+  Hacer un fetch a la API: 
+  https://jsonplaceholder.typicode.com/users
 
-  // view == "contador" && "contador"
+  En el componente UserList renderizar 
+  name - email - company de cada usuario.
 
-  // true && true => true
-  // true && false => false
-  // true && algo => algo
+  - Si tienen ganas le pueden dar un poco de amor
+  a los estilos.
+  
+  -- Bonus
+  - Implementar busqueda local de usuarios.
+  */
 
-  // false && true/false => false
-  const incrementarPatata = () => {
-    console.log("Incrementar patata");
-    patata.value = patata.value + 1;
-    setView("test");
-    console.log(patata);
-  };
-
-  return (
-    <>
-      {/* <h5 onDoubleClick={() => setView("patata")}>ESTADO</h5> */}
-      <button onClick={() => setView("contador")}>Contador</button>
-      <button onClick={() => setView("humano")}>Ejemplo useEffect</button>
-      {renderMenuOption(view)}
-    </>
-  );
+    return (
+        <>
+            <div>
+                <BrowserRouter>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/contador" element={<Contador />} />
+                        <Route
+                            path="/inputValidation"
+                            element={<InputValidation />}
+                        />
+                        <Route
+                            path="/users"
+                            element={<UserList />}
+                        />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </>
+    );
 }
 
 export default App;
